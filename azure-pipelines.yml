@@ -27,7 +27,7 @@ stages:
         repository: tiredful-api
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
-          $(tag)
+          latest
 
     - script: |
         docker image ls
