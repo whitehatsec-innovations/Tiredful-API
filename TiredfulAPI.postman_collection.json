@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "65e1dbc2-7fc7-4d43-8844-1c68d99089b0",
+		"name": "Tiredful API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Information Disclosure",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3008/api/v1/books/978-93-80658-74-2/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"v1",
+						"books",
+						"978-93-80658-74-2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insecure Direct Object Reference",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3008/api/v1/exams/MQ==/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"v1",
+						"exams",
+						"MQ==",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Access Control",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3008/api/v1/articles/2/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"v1",
+						"articles",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rate Limiting",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"PNR\": \"9875-4581-234\"\n}\n  "
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/v1/trains/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"v1",
+						"trains",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SQL Injection",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n      \"month\": \"1\"\n    }\n    "
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/v1/activities/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"v1",
+						"activities",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "XSS Stored",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3008/api/v1/advertisements/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"v1",
+						"advertisements",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "XSS Save",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n      \"headline\": \"Test\",\n      \"info\": \"Some Info\",\n      \"price\":  13.03\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/v1/advertisements/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"v1",
+						"advertisements",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "5e09eebc-c6ec-4045-b77b-a947181d8ccb",
+				"type": "text/javascript",
+				"exec": [
+					"const tokenUrl = 'http://localhost:3008/oauth/token/';",
+					"",
+					"const clientId = 'ALGGN0UmsY2Gb9cs3V4CEKMfpBJ2D2XZQXuTFfND';",
+					"const clientSecret = 'mWM7pgvjtUSAtfaK8RXLjzOaLmurBxIWxMdQIQ0t1fSv9orqOnYr5wP5CaFN8DE18NiFiKKalQPu1WecmpbfoZCGYhMqMACz6i2WkWYs5E8gjXxqekjCyPkhBmO5n5EN';",
+					"",
+					"const getTokenRequest = {",
+					"  method: 'POST',",
+					"  url: tokenUrl,",
+					"  body: {",
+					"      mode: 'formdata',",
+					"      formdata: [",
+					"          { key: 'grant_type', value: 'password' },",
+					"          { key: 'username', value: 'batman' },",
+					"          { key: 'password', value: 'Batman@123' },",
+					"          { key: 'client_id', value: clientId },",
+					"          { key: 'client_secret', value: clientSecret }",
+					"      ]",
+					"  }",
+					"};",
+					"",
+					"pm.sendRequest(getTokenRequest, (err, response) => {",
+					"  const jsonResponse = response.json();",
+					"  const newAccessToken = jsonResponse.access_token;",
+					"",
+					"  pm.variables.set('access_token', newAccessToken);",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c7c1f046-fe01-4998-993a-3f770d3dfd4c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
