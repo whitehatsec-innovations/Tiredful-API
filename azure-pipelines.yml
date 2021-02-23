@@ -29,4 +29,4 @@ stages:
           $(tag)
 
     - script: |
-        docker run -i --rm -p 8000:8000 --name tiredful -it tiredful
+        docker run --rm -p 8000:8000 --name tiredful
