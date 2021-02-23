@@ -36,7 +36,7 @@ stages:
           docker run -d --rm -p 8000:8000 --name tiredful tiredful-api
 
     - task: CmdLine@2
-      displayName: Install dependancies
+      displayName: Install dependancies      
       inputs:
         script: |        
           npm install -g newman
@@ -46,3 +46,4 @@ stages:
       inputs:
         script: |        
           newman run TiredfulAPI.postman_collection.json         
+        workingDirectory: $(System.DefaultWorkingDirectory)
