@@ -27,8 +27,6 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: 'start'
-        container: 'Tiredful-API'
+
+    - script: |
+        docker run -p 8000:8000 --name tiredful -it tiredful
