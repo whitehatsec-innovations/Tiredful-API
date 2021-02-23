@@ -27,3 +27,7 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
+    - task: Docker@2
+      inputs:
+      command: 'start'
+      container: 'Tiredful-API'
