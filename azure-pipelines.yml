@@ -24,6 +24,7 @@ stages:
       displayName: Build an image
       inputs:
         command: build
+        repository: tiredful-api
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
