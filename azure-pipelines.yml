@@ -30,5 +30,5 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
-      command: 'start'
-      container: 'Tiredful-API'
+        command: 'start'
+        container: 'Tiredful-API'
