@@ -45,10 +45,10 @@ stages:
         workingDirectory: $(System.DefaultWorkingDirectory)
 
     - task: CmdLine@2
-      displayName: Run functional tests
+      displayName: Run security tests
       inputs:
         script: |  
           wget https://github.com/whitehatsec-innovations/distribution/releases/latest/download/dast-attacker-cli.deb
           sudo dpkg -i dast-attacker-cli.deb  
-          sudo dast-attacker-cli file.json                
+          sudo dast-attacker-cli -accept-eula=Yes -license-key=f5f7d63e-b55a-4c97-af0b-2fcf240c45b3 TiredfulAPI.postman_collection.json                 
         workingDirectory: $(System.DefaultWorkingDirectory)
