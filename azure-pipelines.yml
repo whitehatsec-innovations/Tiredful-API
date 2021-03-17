@@ -21,7 +21,7 @@ stages:
       vmImage: ubuntu-latest
     steps:
     - task: Docker@2
-      displayName: Build an image
+      displayName: Build app
       inputs:
         command: build
         repository: tiredful-api
@@ -36,14 +36,18 @@ stages:
           docker run -d --rm -p 8000:8000 --name tiredful tiredful-api
 
     - task: CmdLine@2
-      displayName: Install dependancies      
+      displayName: Run functional tests
       inputs:
-        script: |        
-          sudo npm install -g newman
+        script: |  
+          sudo npm install -g newman      
+          sudo npm install -g newman-reporter-har
+          newman run TiredfulAPI.postman_collection.json         
+        workingDirectory: $(System.DefaultWorkingDirectory)
 
     - task: CmdLine@2
-      displayName: Run functional tests now
+      displayName: Run functional tests
       inputs:
-        script: |        
-          newman run TiredfulAPI.postman_collection.json         
+        script: |  
+          sudo dpkg -i vendor/dast-attacker-cli_1.0_amd64.deb    
+          sudo dast-attacker-cli file.json                
         workingDirectory: $(System.DefaultWorkingDirectory)
