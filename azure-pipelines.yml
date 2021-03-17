@@ -42,7 +42,7 @@ stages:
           sudo npm install -g newman
 
     - task: CmdLine@2
-      displayName: Run functional tests
+      displayName: Run functional tests now
       inputs:
         script: |        
           newman run TiredfulAPI.postman_collection.json         
