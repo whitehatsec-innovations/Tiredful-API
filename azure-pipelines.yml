@@ -48,6 +48,7 @@ stages:
       displayName: Run functional tests
       inputs:
         script: |  
-          sudo dpkg -i vendor/dast-attacker-cli_1.0_amd64.deb    
+          wget https://github.com/whitehatsec-innovations/distribution/releases/latest/download/dast-attacker-cli.deb
+          sudo dpkg -i dast-attacker-cli.deb  
           sudo dast-attacker-cli file.json                
         workingDirectory: $(System.DefaultWorkingDirectory)
