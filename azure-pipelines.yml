@@ -39,11 +39,12 @@ stages:
       displayName: Run functional tests
       inputs:
         script: |  
-          ./proxy &
+          ./proxy -har &
+          sudo npm install -g newman   
           export HTTP_PROXY="http://127.0.0.1:8080"
-          export HTTP_PROXYS="http://127.0.0.1:8080" 
-          sudo npm install -g newman      
+          export HTTP_PROXYS="http://127.0.0.1:8080"              
           newman run TiredfulAPI.postman_collection.json         
+          curl http://martian.proxy:8181/logs
         workingDirectory: $(System.DefaultWorkingDirectory)
 
     # - task: PowerShell@2
