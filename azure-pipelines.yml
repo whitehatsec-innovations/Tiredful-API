@@ -52,7 +52,7 @@ stages:
       inputs:
         script: | 
           ls    
-          sudo proxy
+          ./proxy
           export HTTP_PROXY="http://127.0.0.1:8080"
           export HTTP_PROXYS="http://127.0.0.1:8080" 
           sudo npm install -g newman-reporter-har
