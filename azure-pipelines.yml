@@ -43,6 +43,10 @@ stages:
           newman run TiredfulAPI.postman_collection.json         
         workingDirectory: $(System.DefaultWorkingDirectory)
 
+    - task: PowerShell@2
+      inputs:
+        filePath: 'runproxy.ps1'
+
     - task: CmdLine@2
       displayName: Run security tests
       inputs:
