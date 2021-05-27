@@ -29,19 +29,19 @@ stages:
     #     tags: |
     #       latest
     
-    - task: CmdLine@2
-      displayName: Run container
-      inputs:
-        script: |        
-          docker run -d --rm -p 8000:8000 --name tiredful tiredful-api
+    # - task: CmdLine@2
+    #   displayName: Run container
+    #   inputs:
+    #     script: |        
+    #       docker run -d --rm -p 8000:8000 --name tiredful tiredful-api
 
-    - task: CmdLine@2
-      displayName: Run functional tests
-      inputs:
-        script: |  
-          sudo npm install -g newman      
-          newman run TiredfulAPI.postman_collection.json         
-        workingDirectory: $(System.DefaultWorkingDirectory)
+    # - task: CmdLine@2
+    #   displayName: Run functional tests
+    #   inputs:
+    #     script: |  
+    #       sudo npm install -g newman      
+    #       newman run TiredfulAPI.postman_collection.json         
+    #     workingDirectory: $(System.DefaultWorkingDirectory)
 
     - task: CmdLine@2
       displayName: Run security tests
