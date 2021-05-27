@@ -36,6 +36,12 @@ stages:
           docker run -d --rm -p 8000:8000 --name tiredful tiredful-api
 
     - task: CmdLine@2
+      displayName: Proxy
+      inputs:
+        script: |        
+          printenv
+
+    - task: CmdLine@2
       displayName: Run functional tests
       inputs:
         script: |  
