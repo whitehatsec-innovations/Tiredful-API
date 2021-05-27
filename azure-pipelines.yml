@@ -44,7 +44,7 @@ stages:
           export HTTP_PROXY="http://127.0.0.1:8080"
           export HTTP_PROXYS="http://127.0.0.1:8080"              
           newman run TiredfulAPI.postman_collection.json         
-          curl http://martian.proxy:8181/logs
+          curl -x http://127.0.0.1:8080 http://martian.proxy:8181/logs
         workingDirectory: $(System.DefaultWorkingDirectory)
 
     # - task: PowerShell@2
